@@ -26,7 +26,7 @@ import (
 // AddressSyncSpec defines the desired state of AddressSync.
 type AddressSyncSpec struct {
 	Watch   WatchSpec    `json:"watch"`
-	Targets []TargetSpec `json:"target"`
+	Targets []TargetSpec `json:"targets"`
 }
 
 type WatchSpec struct {
