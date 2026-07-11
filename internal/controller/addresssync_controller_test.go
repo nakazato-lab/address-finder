@@ -56,6 +56,7 @@ var _ = Describe("AddressSync Controller", func() {
 							Selector: metav1.LabelSelector{
 								MatchLabels: map[string]string{"app": "nfd"},
 							},
+							PortName: "ndn",
 						},
 						Targets: []ndnv1alpha1.TargetSpec{
 							{

@@ -31,6 +31,7 @@ type AddressSyncSpec struct {
 
 type WatchSpec struct {
 	Selector metav1.LabelSelector `json:"selector"`
+	PortName string               `json:"portName"`
 }
 
 type TargetSpec struct {

@@ -97,6 +97,8 @@ spec:
                 type: array
               watch:
                 properties:
+                  portName:
+                    type: string
                   selector:
                     description: |-
                       A label selector is a label query over a set of resources. The result of matchLabels and
@@ -147,6 +149,7 @@ spec:
                     type: object
                     x-kubernetes-map-type: atomic
                 required:
+                - portName
                 - selector
                 type: object
             required:
