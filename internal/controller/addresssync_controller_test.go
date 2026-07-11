@@ -51,7 +51,20 @@ var _ = Describe("AddressSync Controller", func() {
 						Name:      resourceName,
 						Namespace: "default",
 					},
-					// TODO(user): Specify other spec details if needed.
+					Spec: ndnv1alpha1.AddressSyncSpec{
+						Watch: ndnv1alpha1.WatchSpec{
+							Selector: metav1.LabelSelector{
+								MatchLabels: map[string]string{"app": "nfd"},
+							},
+						},
+						Targets: []ndnv1alpha1.TargetSpec{
+							{
+								Selector: metav1.LabelSelector{
+									MatchLabels: map[string]string{"app": "manager"},
+								},
+							},
+						},
+					},
 				}
 				Expect(k8sClient.Create(ctx, resource)).To(Succeed())
 			}
