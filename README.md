@@ -1,100 +1,49 @@
-# address-finder
-// TODO(user): Add simple overview of use/purpose
+## To Deploy on the cluster
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+**1. Build and push the controller image**
 
-## Getting Started
+The image is published to `ghcr.io/tryuuu/address-finder` via the
+`docker-build.yml` GitHub Actions workflow (triggered on push to `main`,
+on tags, or manually with `gh workflow run docker-build.yml`).
 
-### Prerequisites
-- go version v1.22.0+
-- docker version 17.03+.
-- kubectl version v1.11.3+.
-- Access to a Kubernetes v1.11.3+ cluster.
-
-### To Deploy on the cluster
-**Build and push your image to the location specified by `IMG`:**
+Alternatively, build and push locally:
 
 ```sh
-make docker-build docker-push IMG=<some-registry>/address-finder:tag
+make docker-build docker-push IMG=ghcr.io/tryuuu/address-finder:<tag>
 ```
 
-**NOTE:** This image ought to be published in the personal registry you specified.
-And it is required to have access to pull the image from the working environment.
-Make sure you have the proper permission to the registry if the above commands don’t work.
-
-**Install the CRDs into the cluster:**
+**2. Install the CRDs**
 
 ```sh
 make install
 ```
 
-**Deploy the Manager to the cluster with the image specified by `IMG`:**
+**3. Deploy the controller**
 
 ```sh
-make deploy IMG=<some-registry>/address-finder:tag
+make deploy IMG=ghcr.io/tryuuu/address-finder:<tag>
 ```
 
-> **NOTE**: If you encounter RBAC errors, you may need to grant yourself cluster-admin
-privileges or be logged in as admin.
+This creates the `address-finder-system` namespace and the
+`address-finder-controller-manager` Deployment.
 
-**Create instances of your solution**
-You can apply the samples (examples) from the config/sample:
+**4. Create an `AddressSync` instance**
+
+The sample assumes an `ndn` namespace:
 
 ```sh
+kubectl create ns ndn
 kubectl apply -k config/samples/
+kubectl get addresssync -n ndn -o yaml   # check status.currentAddress
 ```
 
->**NOTE**: Ensure that the samples has default values to test it out.
-
-### To Uninstall
-**Delete the instances (CRs) from the cluster:**
+## To Uninstall
 
 ```sh
 kubectl delete -k config/samples/
-```
-
-**Delete the APIs(CRDs) from the cluster:**
-
-```sh
 make uninstall
-```
-
-**UnDeploy the controller from the cluster:**
-
-```sh
 make undeploy
 ```
-
-## Project Distribution
-
-Following are the steps to build the installer and distribute this project to users.
-
-1. Build the installer for the image built and published in the registry:
-
-```sh
-make build-installer IMG=<some-registry>/address-finder:tag
-```
-
-NOTE: The makefile target mentioned above generates an 'install.yaml'
-file in the dist directory. This file contains all the resources built
-with Kustomize, which are necessary to install this project without
-its dependencies.
-
-2. Using the installer
-
-Users can just run kubectl apply -f <URL for YAML BUNDLE> to install the project, i.e.:
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/<org>/address-finder/<tag or branch>/dist/install.yaml
-```
-
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
-
-**NOTE:** Run `make help` for more information on all potential `make` targets
-
-More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
 
 ## License
 
@@ -111,4 +60,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
