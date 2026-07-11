@@ -39,7 +39,7 @@ spec:
           spec:
             description: AddressSyncSpec defines the desired state of AddressSync.
             properties:
-              target:
+              targets:
                 items:
                   properties:
                     selector:
@@ -153,7 +153,7 @@ spec:
                 - selector
                 type: object
             required:
-            - target
+            - targets
             - watch
             type: object
           status:
