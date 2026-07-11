@@ -1,24 +1,12 @@
 ## To Deploy on the cluster
 
-**1. Build and push the controller image**
-
-The image is published to `ghcr.io/tryuuu/address-finder` via the
-`docker-build.yml` GitHub Actions workflow (triggered on push to `main`,
-on tags, or manually with `gh workflow run docker-build.yml`).
-
-Alternatively, build and push locally:
-
-```sh
-make docker-build docker-push IMG=ghcr.io/tryuuu/address-finder:<tag>
-```
-
-**2. Install the CRDs**
+**1. Install the CRDs**
 
 ```sh
 make install
 ```
 
-**3. Deploy the controller**
+**2. Deploy the controller**
 
 ```sh
 make deploy IMG=ghcr.io/tryuuu/address-finder:<tag>
@@ -27,7 +15,7 @@ make deploy IMG=ghcr.io/tryuuu/address-finder:<tag>
 This creates the `address-finder-system` namespace and the
 `address-finder-controller-manager` Deployment.
 
-**4. Create an `AddressSync` instance**
+**3. Create an `AddressSync` instance**
 
 The sample assumes an `ndn` namespace:
 
