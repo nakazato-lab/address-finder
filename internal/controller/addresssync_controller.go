@@ -205,6 +205,7 @@ func (r *AddressSyncReconciler) SetupWithManager(mgr ctrl.Manager) error {
 }
 
 // Determines which Reconcile requests to enqueue when a Pod changes.
+// We'd want to compare against the old IP, but this function has no access to the previous state.
 func (r *AddressSyncReconciler) findAddressSyncForPod(ctx context.Context, obj client.Object) []reconcile.Request {
 	pod, ok := obj.(*corev1.Pod)
 	if !ok {
