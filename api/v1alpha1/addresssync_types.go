@@ -25,17 +25,21 @@ import (
 
 // AddressSyncSpec defines the desired state of AddressSync.
 type AddressSyncSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	Watch   WatchSpec    `json:"watch"`
+	Targets []TargetSpec `json:"target"`
+}
 
-	// Foo is an example field of AddressSync. Edit addresssync_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+type WatchSpec struct {
+	Selector metav1.LabelSelector `json:"selector"`
+}
+
+type TargetSpec struct {
+	Selector metav1.LabelSelector `json:"selector"`
 }
 
 // AddressSyncStatus defines the observed state of AddressSync.
 type AddressSyncStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	CurrentAddress string `json:"currentAddress,omitempty"`
 }
 
 // +kubebuilder:object:root=true
