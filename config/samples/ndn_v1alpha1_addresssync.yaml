@@ -1,0 +1,9 @@
+apiVersion: ndn.tryu.dev/v1alpha1
+kind: AddressSync
+metadata:
+  labels:
+    app.kubernetes.io/name: address-finder
+    app.kubernetes.io/managed-by: kustomize
+  name: addresssync-sample
+spec:
+  # TODO(user): Add fields here

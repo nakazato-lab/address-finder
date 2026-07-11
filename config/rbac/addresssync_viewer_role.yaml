@@ -1,0 +1,23 @@
+# permissions for end users to view addresssyncs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: address-finder
+    app.kubernetes.io/managed-by: kustomize
+  name: addresssync-viewer-role
+rules:
+- apiGroups:
+  - ndn.tryu.dev
+  resources:
+  - addresssyncs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ndn.tryu.dev
+  resources:
+  - addresssyncs/status
+  verbs:
+  - get

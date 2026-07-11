@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- ndn_v1alpha1_addresssync.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
