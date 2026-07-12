@@ -12,10 +12,10 @@ make install
 make deploy IMG=ghcr.io/tryuuu/address-finder:<tag>
 ```
 
-This creates the `address-finder-system` namespace and the
+This creates the `address-finder` namespace and the
 `address-finder-controller-manager` Deployment.
 
-**3. Create an `AddressSync` instance**
+**3. Create an `AddressSync` custom resource**
 
 The sample assumes an `ndn` namespace:
 
