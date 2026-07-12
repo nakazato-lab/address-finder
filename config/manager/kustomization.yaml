@@ -4,5 +4,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: controller
-  newName: ghcr.io/tryuuu/address-finder
-  newTag: sha-147cb90
+  newName: ghcr.io/nakazato-lab/address-finder
+  newTag: sha-c47150c

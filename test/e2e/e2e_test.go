@@ -31,7 +31,7 @@ import (
 )
 
 // namespace where the project is deployed in
-const namespace = "address-finder-system"
+const namespace = "address-finder"
 
 // serviceAccountName created for the project
 const serviceAccountName = "address-finder-controller-manager"
