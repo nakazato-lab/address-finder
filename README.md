@@ -9,7 +9,7 @@ make install
 **2. Deploy the controller**
 
 ```sh
-make deploy IMG=ghcr.io/tryuuu/address-finder:<tag>
+make deploy IMG=ghcr.io/nakazato-lab/address-finder:<tag>
 ```
 
 This creates the `address-finder` namespace and the
